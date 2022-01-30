@@ -1,3 +1,0 @@
-INDEX VERSION 1.131
-file:/C:/Users/guilh/OneDrive/Área%20de%20Trabalho/Generation%20Brasil/Bloco%20II/Spring/Aplicações/.metadata/.plugins/org.eclipse.jdt.core/1865797976.index
-meta_index

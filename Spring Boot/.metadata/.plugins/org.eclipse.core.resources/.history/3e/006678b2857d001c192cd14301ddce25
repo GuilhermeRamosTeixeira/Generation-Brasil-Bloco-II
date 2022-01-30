@@ -1,5 +1,0 @@
-package com.org.generation.projetogames.repository;
-
-public interface CategoriaRepository {
-
-}
