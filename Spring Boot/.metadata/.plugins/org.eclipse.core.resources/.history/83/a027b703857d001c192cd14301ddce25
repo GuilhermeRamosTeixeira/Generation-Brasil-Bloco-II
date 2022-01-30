@@ -1,0 +1,5 @@
+package com.org.generation.projetogames.model.repository;
+
+public class ProdutoController {
+
+}
