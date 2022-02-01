@@ -1,5 +1,7 @@
 package org.generatiom.blogPessoal.model;
 
+
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,25 +16,26 @@ import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table (name = "tb_tema")
+@Table(name = "tb_temas")
 public class Tema {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@NotBlank
+
+	@NotBlank(message = "O atributo Descrição é obrigatório e não pode conter espaços em branco")
 	private String descricao;
-	
-	@OneToMany(mappedBy= "tema" , cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("tema")
-	private List<PostagemModel>postagem;
+	private List<PostagemModel> postagem;
 
-
+	public Tema(Long id, String descricao) {
+		this.id = id;
+		this.descricao = descricao;
+	}
 	
-	// GETS E SETS
-	
+	public Tema() { }
 	
 	public long getId() {
 		return id;
@@ -57,6 +60,5 @@ public class Tema {
 	public void setPostagem(List<PostagemModel> postagem) {
 		this.postagem = postagem;
 	}
-	
-	
+
 }

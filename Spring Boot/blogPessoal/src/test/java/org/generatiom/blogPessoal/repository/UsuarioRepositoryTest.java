@@ -1,5 +1,7 @@
 package org.generatiom.blogPessoal.repository;
 
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,13 +29,13 @@ public class UsuarioRepositoryTest {
 	@BeforeAll
 	void start(){
 
-		usuarioRepository.save(new Usuario(0, "João da Silva", "joao@email.com.br", "13465278"));
+		usuarioRepository.save(new Usuario(0L, "João da Silva", "joao@email.com.br", "13465278"));
 		
-		usuarioRepository.save(new Usuario(0, "Manuela da Silva", "manuela@email.com.br", "13465278"));
+		usuarioRepository.save(new Usuario(0L, "Manuela da Silva", "manuela@email.com.br", "13465278"));
 		
-		usuarioRepository.save(new Usuario(0, "Adriana da Silva", "adriana@email.com.br", "13465278"));
+		usuarioRepository.save(new Usuario(0L, "Adriana da Silva", "adriana@email.com.br", "13465278"));
 
-        usuarioRepository.save(new Usuario(0, "Paulo Antunes", "paulo@email.com.br", "13465278"));
+        usuarioRepository.save(new Usuario(0L, "Paulo Antunes", "paulo@email.com.br", "13465278"));
 
 	}
 
@@ -51,9 +53,9 @@ public class UsuarioRepositoryTest {
 
 		List<Usuario> listaDeUsuarios = usuarioRepository.findAllByNomeContainingIgnoreCase("Silva");
 		assertEquals(3, listaDeUsuarios.size());
-		assertTrue(listaDeUsuarios.get(0).getnome().equals("João da Silva"));
-		assertTrue(listaDeUsuarios.get(1).getnome().equals("Manuela da Silva"));
-		assertTrue(listaDeUsuarios.get(2).getnome().equals("Adriana da Silva"));
+		assertTrue(listaDeUsuarios.get(0).getNome().equals("João da Silva"));
+		assertTrue(listaDeUsuarios.get(1).getNome().equals("Manuela da Silva"));
+		assertTrue(listaDeUsuarios.get(2).getNome().equals("Adriana da Silva"));
 		
 	}
 

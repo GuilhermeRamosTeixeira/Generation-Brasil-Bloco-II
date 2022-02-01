@@ -1,5 +1,7 @@
 package org.generatiom.blogPessoal.controller;
 
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Optional;
@@ -39,14 +41,14 @@ public class UsuarioControllerTest {
 	@DisplayName("Cadastrar Um Usuário")
 	public void deveCriarUmUsuario() {
 
-		HttpEntity<Usuario> requisicao = new HttpEntity<Usuario>(new Usuario(0, 
+		HttpEntity<Usuario> requisicao = new HttpEntity<Usuario>(new Usuario(0L, 
 			"Paulo Antunes", "paulo_antunes@email.com.br", "13465278"));
 
 		ResponseEntity<Usuario> resposta = testRestTemplate
 			.exchange("/usuarios/cadastrar", HttpMethod.POST, requisicao, Usuario.class);
 
 		assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
-		assertEquals(requisicao.getBody().getnome(), resposta.getBody().getnome());
+		assertEquals(requisicao.getBody().getNome(), resposta.getBody().getNome());
 		assertEquals(requisicao.getBody().getUsuario(), resposta.getBody().getUsuario());
 	}
 
@@ -58,7 +60,7 @@ public class UsuarioControllerTest {
 		usuarioService.cadastrarUsuario(new Usuario(0L, 
 			"Maria da Silva", "maria_silva@email.com.br", "13465278"));
 
-		HttpEntity<Usuario> requisicao = new HttpEntity<Usuario>(new Usuario(0, 
+		HttpEntity<Usuario> requisicao = new HttpEntity<Usuario>(new Usuario(0L, 
 			"Maria da Silva", "maria_silva@email.com.br", "13465278"));
 
 		ResponseEntity<Usuario> resposta = testRestTemplate
@@ -72,7 +74,7 @@ public class UsuarioControllerTest {
 	@DisplayName("Alterar um Usuário")
 	public void deveAtualizarUmUsuario() {
 
-		Optional<Usuario> usuarioCreate = usuarioService.cadastrarUsuario(new Usuario(0, 
+		Optional<Usuario> usuarioCreate = usuarioService.cadastrarUsuario(new Usuario(0L, 
 			"Juliana Andrews", "juliana_andrews@email.com.br", "juliana123"));
 
 		Usuario usuarioUpdate = new Usuario(usuarioCreate.get().getId(), 
@@ -85,7 +87,7 @@ public class UsuarioControllerTest {
 			.exchange("/usuarios/atualizar", HttpMethod.PUT, requisicao, Usuario.class);
 
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
-		assertEquals(usuarioUpdate.getnome(), resposta.getBody().getnome());
+		assertEquals(usuarioUpdate.getNome(), resposta.getBody().getNome());
 		assertEquals(usuarioUpdate.getUsuario(), resposta.getBody().getUsuario());
 	}
 
@@ -94,10 +96,10 @@ public class UsuarioControllerTest {
 	@DisplayName("Listar todos os Usuários")
 	public void deveMostrarTodosUsuarios() {
 
-		usuarioService.cadastrarUsuario(new Usuario(0, 
+		usuarioService.cadastrarUsuario(new Usuario(0L, 
 			"Sabrina Sanches", "sabrina_sanches@email.com.br", "sabrina123"));
 		
-		usuarioService.cadastrarUsuario(new Usuario(0, 
+		usuarioService.cadastrarUsuario(new Usuario(0L, 
 			"Ricardo Marques", "ricardo_marques@email.com.br", "ricardo123"));
 
 		ResponseEntity<String> resposta = testRestTemplate

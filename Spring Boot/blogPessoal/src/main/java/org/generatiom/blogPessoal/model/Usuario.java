@@ -1,65 +1,71 @@
 package org.generatiom.blogPessoal.model;
 
+
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "tb_usuarios")
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@NotBlank(message ="Atributo nome obrigatorio ")
-	@Size(max =100 , message ="atributo nome aceita no maximo 100 caracteres")
-	private String nome;
-	
-	@NotBlank(message = " atributo usuario é obrigatório!!!")
-	@Size(max = 100 , message =" Atributo usuario aceita no maximo 100 caracteres")
-	private String usuario;
-	
-	@NotBlank(message =" atributo senha é obrigatório!!!")
-	@Size(max = 100 , message ="Atributo senha aceita no maximo 100 caracteres")
-	private String senha;
-	
-	
-	
-	
-	
-	
+	private Long id;
 
-	public Usuario(long id, String nome,String usuario, String senha) {
+	@NotNull(message = "O atributo Nome é Obrigatório!")
+	private String nome;
+
+	@NotNull(message = "O atributo Usuário é Obrigatório!")
+	@Email(message = "O atributo Usuário deve ser um email válido!")
+	private String usuario;
+
+	@NotBlank(message = "O atributo Senha é Obrigatório!")
+	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
+	private String senha;
+
+	private String foto;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<PostagemModel> postagem;
+	
+	
+	public Usuario(Long id, String nome, String usuario, String senha) {
 		this.id = id;
 		this.nome = nome;
 		this.usuario = usuario;
 		this.senha = senha;
 	}
-
-	public Usuario() {}
-
-
-	//GETS E SETS
-
-	public long getId() {
+	
+	public Usuario() { }
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getnome() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setnome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
@@ -78,7 +84,21 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public List<PostagemModel> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<PostagemModel> postagem) {
+		this.postagem = postagem;
+	}
 
 }
