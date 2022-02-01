@@ -29,6 +29,22 @@ public class Usuario {
 	@Size(max = 100 , message ="Atributo senha aceita no maximo 100 caracteres")
 	private String senha;
 	
+	
+	
+	
+	
+	
+
+	public Usuario(long id, String nome,String usuario, String senha) {
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+
+	public Usuario() {}
+
+
 	//GETS E SETS
 
 	public long getId() {

@@ -2,6 +2,8 @@ package org.generatiom.blogPessoal.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.generatiom.blogPessoal.model.UserLogin;
 import org.generatiom.blogPessoal.model.Usuario;
 import org.generatiom.blogPessoal.service.UsuarioService;
@@ -28,10 +30,15 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
+	
+
+
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Usuario>Post(@RequestBody Usuario usuario){
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(usuarioService.cadastrarUsuario(usuario));
-		
-	}
+	public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario) {
+
+		return usuarioService.cadastrarUsuario(usuario)
+			.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
+			.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+}
+
 }
