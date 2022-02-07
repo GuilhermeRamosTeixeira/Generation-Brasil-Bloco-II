@@ -10,12 +10,12 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.generation</groupId>
-	<artifactId>projeto_uana</artifactId>
+	<artifactId>BlogPessoal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>projeto_uana</name>
 	<description>Projeto Integrador Uaná</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>16</java.version>
 	</properties>
 
 	<dependencies>
